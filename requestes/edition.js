@@ -1,24 +1,49 @@
-const BASE_URL = "http://localhost:3000/api/editions";
+const EDITION_URL = "/api/editions";
 
-export const getEditions = () =>
-  fetch(BASE_URL).then(r => r.json());
+export const getAllEditions = async () => {
+  try {
+    const res = await fetch(EDITION_URL);
+    if (!res.ok) throw new Error("Failed to fetch editions");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const getEdition = (id) =>
-  fetch(`${BASE_URL}/${id}`).then(r => r.json());
+export const getEditionById = async (id) => {
+  try {
+    const res = await fetch(`${EDITION_URL}/${id}`);
+    if (!res.ok) throw new Error("Edition not found");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const createEdition = (data) =>
-  fetch(BASE_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+export const createEdition = async (data) => {
+  try {
+    const res = await fetch(EDITION_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create edition");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const updateEdition = (id, data) =>
-  fetch(`${BASE_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+export const updateEdition = async (id, data) => {
+  try {
+    const res = await fetch(`${EDITION_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update edition");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const deleteEdition = (id) =>
-  fetch(`${BASE_URL}/${id}`, { method: "DELETE" }).then(r => r.json());
+export const deleteEdition = async (id) => {
+  try {
+    const res = await fetch(`${EDITION_URL}/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Failed to delete edition");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};

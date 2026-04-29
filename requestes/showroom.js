@@ -1,24 +1,51 @@
-const BASE_URL = "http://localhost:3000/api/showrooms";
+const SHOWROOM_URL = "/api/showrooms";
 
-export const getShowrooms = () =>
-  fetch(BASE_URL).then(r => r.json());
+export const getAllShowrooms = async () => {
+  try {
+    const res = await fetch(SHOWROOM_URL);
+    if (!res.ok) throw new Error("Failed to fetch showrooms");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const getShowroom = (id) =>
-  fetch(`${BASE_URL}/${id}`).then(r => r.json());
+export const getShowroomById = async (id) => {
+  try {
+    const res = await fetch(`${SHOWROOM_URL}/${id}`);
+    if (!res.ok) throw new Error("Showroom not found");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const createShowroom = (data) =>
-  fetch(BASE_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+// data: { name, address, phone, managerName, managerPhone, managerEmail }
+export const createShowroom = async (data) => {
+  try {
+    const res = await fetch(SHOWROOM_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create showroom");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const updateShowroom = (id, data) =>
-  fetch(`${BASE_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+// data: { name, address, phone, managerName, managerPhone, managerEmail }
+export const updateShowroom = async (id, data) => {
+  try {
+    const res = await fetch(`${SHOWROOM_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update showroom");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const deleteShowroom = (id) =>
-  fetch(`${BASE_URL}/${id}`, { method: "DELETE" }).then(r => r.json());
+export const deleteShowroom = async (id) => {
+  try {
+    const res = await fetch(`${SHOWROOM_URL}/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Failed to delete showroom");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};

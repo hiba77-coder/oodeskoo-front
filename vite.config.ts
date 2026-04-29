@@ -15,4 +15,14 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    proxy: {
+      // Any request starting with /api will be forwarded to the Vercel backend
+      "/api": {
+        target: "https://oodeskoo-fb.vercel.app",
+        changeOrigin: true, // hides the localhost origin from the backend
+        secure: true,
+      },
+    },
+  },
 });

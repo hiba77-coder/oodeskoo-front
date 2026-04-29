@@ -1,24 +1,51 @@
-const BASE_URL = "http://localhost:3000/api/staff";
+const STAFF_URL = "/api/staff";
 
-export const getStaff = () =>
-  fetch(BASE_URL).then(r => r.json());
+export const getAllStaff = async () => {
+  try {
+    const res = await fetch(STAFF_URL);
+    if (!res.ok) throw new Error("Failed to fetch staff");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const getStaffById = (id) =>
-  fetch(`${BASE_URL}/${id}`).then(r => r.json());
+export const getStaffById = async (id) => {
+  try {
+    const res = await fetch(`${STAFF_URL}/${id}`);
+    if (!res.ok) throw new Error("Staff not found");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const createStaff = (data) =>
-  fetch(BASE_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+// data: { fullName, email, phone, password, Role, showroomId }
+export const createStaff = async (data) => {
+  try {
+    const res = await fetch(STAFF_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create staff");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const updateStaff = (id, data) =>
-  fetch(`${BASE_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+// data: { fullName, email, phone, password, Role, showroomId }
+export const updateStaff = async (id, data) => {
+  try {
+    const res = await fetch(`${STAFF_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update staff");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const deleteStaff = (id) =>
-  fetch(`${BASE_URL}/${id}`, { method: "DELETE" }).then(r => r.json());
+export const deleteStaff = async (id) => {
+  try {
+    const res = await fetch(`${STAFF_URL}/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Failed to delete staff");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};

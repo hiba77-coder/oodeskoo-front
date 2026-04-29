@@ -1,24 +1,33 @@
-const BASE_URL = "http://localhost:3000/api/brands";
+const BASE_URL = "/api/brands"; // Vite proxy forwards this to Vercel in dev
 
-export const getBrands = () =>
-    fetch(BASE_URL).then(r => r.json());
+// GET all brands
+export const getAllBrands = async () => {
+    try {
+        const response = await fetch(BASE_URL);
 
-export const getBrand = (id) =>
-    fetch(`${BASE_URL}/${id}`).then(r => r.json());
+        if (!response.ok) {
+            throw new Error("Failed to fetch brands");
+        }
 
-export const createBrand = (data) =>
-    fetch(BASE_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-    }).then(r => r.json());
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
 
-export const updateBrand = (id, data) =>
-    fetch(`${BASE_URL}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-    }).then(r => r.json());
+// GET brand by id
+export const getBrandById = async (id) => {
+    try {
+        const response = await fetch(`${BASE_URL}/${id}`);
 
-export const deleteBrand = (id) =>
-    fetch(`${BASE_URL}/${id}`, { method: "DELETE" }).then(r => r.json());
+        if (!response.ok) {
+            throw new Error("Brand not found");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};

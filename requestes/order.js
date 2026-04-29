@@ -1,24 +1,51 @@
-const BASE_URL = "http://localhost:3000/api/orders";
+const ORDER_URL = "/api/orders";
 
-export const getOrders = () =>
-  fetch(BASE_URL).then(r => r.json());
+export const getAllOrders = async () => {
+  try {
+    const res = await fetch(ORDER_URL);
+    if (!res.ok) throw new Error("Failed to fetch orders");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const getOrder = (id) =>
-  fetch(`${BASE_URL}/${id}`).then(r => r.json());
+export const getOrderById = async (id) => {
+  try {
+    const res = await fetch(`${ORDER_URL}/${id}`);
+    if (!res.ok) throw new Error("Order not found");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const createOrder = (data) =>
-  fetch(BASE_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+// data: { customerId, carId, date, price, status, finalPrice }
+export const createOrder = async (data) => {
+  try {
+    const res = await fetch(ORDER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to create order");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const updateOrder = (id, data) =>
-  fetch(`${BASE_URL}/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(r => r.json());
+// data: { price, status, finalPrice }  ← only these 3 are updatable per your route
+export const updateOrder = async (id, data) => {
+  try {
+    const res = await fetch(`${ORDER_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error("Failed to update order");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
 
-export const deleteOrder = (id) =>
-  fetch(`${BASE_URL}/${id}`, { method: "DELETE" }).then(r => r.json());
+export const deleteOrder = async (id) => {
+  try {
+    const res = await fetch(`${ORDER_URL}/${id}`, { method: "DELETE" });
+    if (!res.ok) throw new Error("Failed to delete order");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};
