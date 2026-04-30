@@ -6,16 +6,15 @@ import PhoneInput from "../group-input/PhoneInput";
 
 export default function InputGroup() {
   const countries = [
+    { code: "DZ", label: "+213" },
+    { code: "FR", label: "+33" },
     { code: "US", label: "+1" },
-    { code: "GB", label: "+44" },
-    { code: "CA", label: "+1" },
-    { code: "AU", label: "+61" },
   ];
   const handlePhoneNumberChange = (phoneNumber: string) => {
     console.log("Updated phone number:", phoneNumber);
   };
   return (
-    <ComponentCard title="Input Group">
+    <ComponentCard title="Contact Information">
       <div className="space-y-6">
         <div>
           <Label>Email</Label>
@@ -30,6 +29,7 @@ export default function InputGroup() {
             </span>
           </div>
         </div>
+        {/*
         <div>
           <Label>Phone</Label>
           <PhoneInput
@@ -38,17 +38,19 @@ export default function InputGroup() {
             placeholder="+1 (555) 000-0000"
             onChange={handlePhoneNumberChange}
           />
-        </div>{" "}
+      </div>
+      */}
+        {" "}
         <div>
-          <Label>Phone</Label>
+          <Label>Phone *</Label>
           <PhoneInput
             selectPosition="end"
             countries={countries}
-            placeholder="+1 (555) 000-0000"
+            placeholder="+213 (0XX) XXX-XXX"
             onChange={handlePhoneNumberChange}
           />
         </div>
       </div>
-    </ComponentCard>
+    </ComponentCard >
   );
 }

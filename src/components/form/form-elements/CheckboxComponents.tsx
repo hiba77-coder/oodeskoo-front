@@ -7,6 +7,8 @@ export default function CheckboxComponents() {
   const [isCheckedTwo, setIsCheckedTwo] = useState(true);
   const [isCheckedDisabled, setIsCheckedDisabled] = useState(false);
   return (
+    <>
+      {/* 
     <ComponentCard title="Checkbox">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-3">
@@ -32,5 +34,7 @@ export default function CheckboxComponents() {
         </div>
       </div>
     </ComponentCard>
+      */}
+    </>
   );
 }

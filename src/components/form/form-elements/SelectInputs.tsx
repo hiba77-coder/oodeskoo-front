@@ -23,6 +23,8 @@ export default function SelectInputs() {
     { value: "5", text: "Option 5", selected: false },
   ];
   return (
+    <>
+      {/*
     <ComponentCard title="Select Inputs">
       <div className="space-y-6">
         <div>
@@ -47,5 +49,8 @@ export default function SelectInputs() {
         </div>
       </div>
     </ComponentCard>
+    */}
+
+    </>
   );
 }

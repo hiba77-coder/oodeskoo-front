@@ -9,7 +9,10 @@ export default function RadioButtons() {
     setSelectedValue(value);
   };
   return (
+    <>
+      {/*
     <ComponentCard title="Radio Buttons">
+
       <div className="flex flex-wrap items-center gap-8">
         <Radio
           id="radio1"
@@ -37,6 +40,9 @@ export default function RadioButtons() {
           disabled={true}
         />
       </div>
-    </ComponentCard>
+
+    </ComponentCard >
+    */}
+    </>
   );
 }

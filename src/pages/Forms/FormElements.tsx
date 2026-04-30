@@ -16,24 +16,30 @@ export default function FormElements() {
     <div>
       <PageMeta
         title="React.js Form Elements Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Form Elements  Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        description="This is React.js Form Elements Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
       />
-      <PageBreadcrumb pageTitle="Form Elements" />
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-        <div className="space-y-6">
-          <DefaultInputs />
-          <SelectInputs />
-          <TextAreaInput />
-          <InputStates />
+      <PageBreadcrumb pageTitle="Customer Form" />
+
+      <div className="space-y-6">
+        {/* Row 1: Personal Info + Contact Info side by side */}
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+          <div className="space-y-6">
+            <DefaultInputs />
+            <SelectInputs />
+            <TextAreaInput />
+            <InputStates />
+          </div>
+          <div className="space-y-6">
+            <InputGroup />
+            <FileInputExample />
+            <CheckboxComponents />
+            <RadioButtons />
+            <ToggleSwitch />
+          </div>
         </div>
-        <div className="space-y-6">
-          <InputGroup />
-          <FileInputExample />
-          <CheckboxComponents />
-          <RadioButtons />
-          <ToggleSwitch />
-          <DropzoneComponent />
-        </div>
+
+        {/* Row 2: Dropzone full width */}
+        <DropzoneComponent />
       </div>
     </div>
   );
