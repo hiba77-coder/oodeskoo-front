@@ -67,6 +67,12 @@ const navItems: NavItem[] = [
       //{ name: "404 Error", path: "/error-404", pro: false },
     ],
   },
+  {
+    name: "Cars Settings",
+    icon: <TableIcon />,  // or whatever icon fits
+    path: "/cars-settings",
+  },
+
 ];
 
 const othersItems: NavItem[] = [
