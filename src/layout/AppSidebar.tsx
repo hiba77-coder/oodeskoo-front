@@ -46,6 +46,14 @@ const navItems: NavItem[] = [
     icon: <ListIcon />,
     subItems: [{ name: "Customer Form", path: "/form-elements", pro: false }],
   },
+  //ADD THIS at 01/05/26
+  {
+    name: "Stock",
+    icon: <TableIcon />,
+    subItems: [
+      { name: "All", path: "/stock", pro: false },
+    ],
+  },
   {
     name: "Customers",
     icon: <TableIcon />,

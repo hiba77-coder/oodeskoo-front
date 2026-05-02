@@ -47,3 +47,11 @@ export const deleteEdition = async (id) => {
     return await res.json();
   } catch (error) { console.error(error); throw error; }
 };
+//01/05/26
+export const getEditionsByModel = async (modelId) => {
+  try {
+    const res = await fetch(`${EDITION_URL}?modelId=${modelId}`);
+    if (!res.ok) throw new Error("Failed to fetch editions by model");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};

@@ -49,3 +49,11 @@ export const deleteModel = async (id) => {
     return await res.json();
   } catch (error) { console.error(error); throw error; }
 };
+//1/05/26
+export const getModelsByBrand = async (brandId) => {
+  try {
+    const res = await fetch(`${MODEL_URL}?brandId=${brandId}`);
+    if (!res.ok) throw new Error("Failed to fetch models by brand");
+    return await res.json();
+  } catch (error) { console.error(error); throw error; }
+};

@@ -19,6 +19,7 @@ import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
 import TestBrands from "./pages/testPage"; // test fetching data from dataBase
+import StockBrowser from "./pages/Stock/StockBrowser"; //01/05/26
 export default function App() {
   return (
     <>
@@ -54,6 +55,7 @@ export default function App() {
             {/* Charts */}
             <Route path="/line-chart" element={<LineChart />} />
             <Route path="/bar-chart" element={<BarChart />} />
+            <Route path="/stock" element={<StockBrowser />} />
           </Route>
 
           {/* Auth Layout */}
