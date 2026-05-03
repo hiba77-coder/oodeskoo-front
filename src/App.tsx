@@ -22,6 +22,8 @@ import TestBrands from "./pages/testPage"; // test fetching data from dataBase h
 import StockBrowser from "./pages/Stock/StockBrowser"; //01/05/26 hiba
 import CarSettings from "./pages/Settings/CarSettings"; //02/05/26 hiba
 import Showrooms from "./pages/Settings/Showrooms"; //02/05/26 hiba
+import AddStaff from "./pages/AuthPages/AddStaff"; //03/05/26 hiba
+
 export default function App() {
   return (
     <>
@@ -65,6 +67,7 @@ export default function App() {
           {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/add-staff" element={<AddStaff />} /> {/*03/05/26*/}
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />

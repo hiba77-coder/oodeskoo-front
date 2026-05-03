@@ -77,6 +77,12 @@ const navItems: NavItem[] = [
     icon: <TableIcon />,
     path: "/showrooms",
   },
+  {
+    name: "Add Staff",
+    icon: <UserCircleIcon />,
+    path: "/add-staff",
+  },
+
 
 ];
 
