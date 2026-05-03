@@ -18,9 +18,10 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
-import TestBrands from "./pages/testPage"; // test fetching data from dataBase
-import StockBrowser from "./pages/Stock/StockBrowser"; //01/05/26
-import CarSettings from "./pages/Settings/CarSettings"; //02/05/26
+import TestBrands from "./pages/testPage"; // test fetching data from dataBase hiba
+import StockBrowser from "./pages/Stock/StockBrowser"; //01/05/26 hiba
+import CarSettings from "./pages/Settings/CarSettings"; //02/05/26 hiba
+import Showrooms from "./pages/Settings/Showrooms"; //02/05/26 hiba
 export default function App() {
   return (
     <>
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/bar-chart" element={<BarChart />} />
             <Route path="/stock" element={<StockBrowser />} /> {/*01/05/26*/}
             <Route path="/cars-settings" element={<CarSettings />} /> {/*02/05/26*/}
+            <Route path="/showrooms" element={<Showrooms />} />
           </Route>
 
           {/* Auth Layout */}

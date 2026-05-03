@@ -20,6 +20,7 @@ export default defineConfig({
       // Any request starting with /api will be forwarded to the Vercel backend
       "/api": {
         target: "https://oodeskoo-fb.vercel.app",
+        //target: "http://localhost:3000",
         changeOrigin: true, // hides the localhost origin from the backend
         secure: true,
       },

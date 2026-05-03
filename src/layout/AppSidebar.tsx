@@ -72,6 +72,11 @@ const navItems: NavItem[] = [
     icon: <TableIcon />,  // or whatever icon fits
     path: "/cars-settings",
   },
+  {
+    name: "Showrooms",
+    icon: <TableIcon />,
+    path: "/showrooms",
+  },
 
 ];
 

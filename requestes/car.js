@@ -8,7 +8,7 @@ export const getAllCars = async () => {
   } catch (error) { console.error(error); throw error; }
 };
 
-export const getCarById = async (id) => {
+export const getCarById = async (id) => { //02/05/26 hiba
   try {
     const res = await fetch(`${CAR_URL}/${id}`);
     if (!res.ok) throw new Error("Car not found");
