@@ -1,51 +1,28 @@
-const STAFF_URL = "/api/staff";
+import { api } from "../src/api/axios";
+
+const STAFF_URL = "/staff";
 
 export const getAllStaff = async () => {
-  try {
-    const res = await fetch(STAFF_URL);
-    if (!res.ok) throw new Error("Failed to fetch staff");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(STAFF_URL);
+  return data;
 };
 
 export const getStaffById = async (id) => {
-  try {
-    const res = await fetch(`${STAFF_URL}/${id}`);
-    if (!res.ok) throw new Error("Staff not found");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(`${STAFF_URL}/${id}`);
+  return data;
 };
 
-// data: { fullName, email, phone, password, Role, showroomId }
-export const createStaff = async (data) => {
-  try {
-    const res = await fetch(STAFF_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to create staff");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const createStaff = async (body) => {
+  const { data } = await api.post(STAFF_URL, body);
+  return data;
 };
 
-// data: { fullName, email, phone, password, Role, showroomId }
-export const updateStaff = async (id, data) => {
-  try {
-    const res = await fetch(`${STAFF_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to update staff");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const updateStaff = async (id, body) => {
+  const { data } = await api.put(`${STAFF_URL}/${id}`, body);
+  return data;
 };
 
 export const deleteStaff = async (id) => {
-  try {
-    const res = await fetch(`${STAFF_URL}/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("Failed to delete staff");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.delete(`${STAFF_URL}/${id}`);
+  return data;
 };

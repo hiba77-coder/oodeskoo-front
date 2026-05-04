@@ -1,59 +1,33 @@
-const MODEL_URL = "/api/models";
+import { api } from "../src/api/axios";
+
+const MODEL_URL = "/models";
 
 export const getAllModels = async () => {
-  try {
-    const res = await fetch(MODEL_URL);
-    if (!res.ok) throw new Error("Failed to fetch models");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(MODEL_URL);
+  return data;
 };
 
 export const getModelById = async (id) => {
-  try {
-    const res = await fetch(`${MODEL_URL}/${id}`);
-    if (!res.ok) throw new Error("Model not found");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(`${MODEL_URL}/${id}`);
+  return data;
 };
 
-// data: { name, years, engine, category, brandId, editionId }
-export const createModel = async (data) => {
-  try {
-    const res = await fetch(MODEL_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to create model");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const createModel = async (body) => {
+  const { data } = await api.post(MODEL_URL, body);
+  return data;
 };
 
-// data: { name, years, engine, category, brandId, editionId }
-export const updateModel = async (id, data) => {
-  try {
-    const res = await fetch(`${MODEL_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to update model");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const updateModel = async (id, body) => {
+  const { data } = await api.put(`${MODEL_URL}/${id}`, body);
+  return data;
 };
 
 export const deleteModel = async (id) => {
-  try {
-    const res = await fetch(`${MODEL_URL}/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("Failed to delete model");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.delete(`${MODEL_URL}/${id}`);
+  return data;
 };
-//1/05/26
+
 export const getModelsByBrand = async (brandId) => {
-  try {
-    const res = await fetch(`${MODEL_URL}?brandId=${brandId}`);
-    if (!res.ok) throw new Error("Failed to fetch models by brand");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(`${MODEL_URL}?brandId=${brandId}`);
+  return data;
 };

@@ -17,12 +17,12 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      // Any request starting with /api will be forwarded to the Vercel backend
+      // Any request starting with /api will be forwarded to the local backend
       "/api": {
-        target: "https://oodeskoo-fb.vercel.app",
-        //target: "http://localhost:3000",
+        target: "http://localhost:3000",
+        // target: "https://oodeskoo-fb.vercel.app",
         changeOrigin: true, // hides the localhost origin from the backend
-        secure: true,
+        secure: false,
       },
     },
   },

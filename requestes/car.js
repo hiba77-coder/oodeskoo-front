@@ -1,49 +1,28 @@
-const CAR_URL = "/api/cars";
+import { api } from "../src/api/axios";
+
+const CAR_URL = "/cars";
 
 export const getAllCars = async () => {
-  try {
-    const res = await fetch(CAR_URL);
-    if (!res.ok) throw new Error("Failed to fetch cars");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(CAR_URL);
+  return data;
 };
 
-export const getCarById = async (id) => { //02/05/26 hiba
-  try {
-    const res = await fetch(`${CAR_URL}/${id}`);
-    if (!res.ok) throw new Error("Car not found");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const getCarById = async (id) => {
+  const { data } = await api.get(`${CAR_URL}/${id}`);
+  return data;
 };
 
-export const createCar = async (data) => {
-  try {
-    const res = await fetch(CAR_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to create car");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const createCar = async (body) => {
+  const { data } = await api.post(CAR_URL, body);
+  return data;
 };
 
-export const updateCar = async (id, data) => {
-  try {
-    const res = await fetch(`${CAR_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to update car");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const updateCar = async (id, body) => {
+  const { data } = await api.put(`${CAR_URL}/${id}`, body);
+  return data;
 };
 
 export const deleteCar = async (id) => {
-  try {
-    const res = await fetch(`${CAR_URL}/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("Failed to delete car");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.delete(`${CAR_URL}/${id}`);
+  return data;
 };

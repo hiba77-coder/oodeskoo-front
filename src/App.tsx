@@ -23,7 +23,7 @@ import StockBrowser from "./pages/Stock/StockBrowser"; //01/05/26 hiba
 import CarSettings from "./pages/Settings/CarSettings"; //02/05/26 hiba
 import Showrooms from "./pages/Settings/Showrooms"; //02/05/26 hiba
 import AddStaff from "./pages/AuthPages/AddStaff"; //03/05/26 hiba
-
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 export default function App() {
   return (
     <>
@@ -31,40 +31,57 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           {/* Dashboard Layout */}
-          <Route element={<AppLayout />}>
-            <Route index path="/" element={<Home />} />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppLayout />}>
+              <Route index path="/" element={<Home />} />
 
-            {/* Others Page */}
-            <Route path="/profile" element={<UserProfiles />} />
-            <Route path="/calendar" element={<Calendar />} />
-            <Route path="/blank" element={<Blank />} />
+              {/* Others Page */}
+              <Route path="/profile" element={<UserProfiles />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/blank" element={<Blank />} />
 
-            {/* Test Pages */}
-            <Route path="/test-brands" element={<TestBrands />} />
+              {/* Test Pages */}
+              <Route path="/test-brands" element={<TestBrands />} />
 
-            {/* Forms */}
-            <Route path="/form-elements" element={<FormElements />} />
+              {/* Forms */}
+              <Route path="/form-elements" element={<FormElements />} />
 
-            {/* Tables */}
-            <Route path="/basic-tables" element={<BasicTables />} />
+              {/* Tables */}
+              <Route path="/basic-tables" element={<BasicTables />} />
 
-            {/* Ui Elements */}
-            <Route path="/alerts" element={<Alerts />} />
-            <Route path="/avatars" element={<Avatars />} />
-            <Route path="/badge" element={<Badges />} />
-            <Route path="/buttons" element={<Buttons />} />
-            <Route path="/images" element={<Images />} />
-            <Route path="/videos" element={<Videos />} />
+              {/* Ui Elements */}
+              <Route path="/alerts" element={<Alerts />} />
+              <Route path="/avatars" element={<Avatars />} />
+              <Route path="/badge" element={<Badges />} />
+              <Route path="/buttons" element={<Buttons />} />
+              <Route path="/images" element={<Images />} />
+              <Route path="/videos" element={<Videos />} />
 
-            {/* Charts */}
-            <Route path="/line-chart" element={<LineChart />} />
-            <Route path="/bar-chart" element={<BarChart />} />
-            <Route path="/stock" element={<StockBrowser />} /> {/*01/05/26*/}
-            <Route path="/cars-settings" element={<CarSettings />} /> {/*02/05/26*/}
-            <Route path="/showrooms" element={<Showrooms />} />
+              {/* Charts */}
+              <Route path="/line-chart" element={<LineChart />} />
+              <Route path="/bar-chart" element={<BarChart />} />
+              <Route path="/stock" element={<StockBrowser />} /> {/*01/05/26*/}
+              <Route
+                path="/cars-settings"
+                element={
+                  <ProtectedRoute allowedRoles={["OWNER", "ADMIN"]}>
+                    <CarSettings />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/showrooms"
+                element={
+                  <ProtectedRoute allowedRoles={["OWNER", "ADMIN"]}>
+                    <Showrooms />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
           </Route>
 
           {/* Auth Layout */}
+          <Route path="/login" element={<SignIn />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/add-staff" element={<AddStaff />} /> {/*03/05/26*/}

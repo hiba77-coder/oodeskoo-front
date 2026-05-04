@@ -1,51 +1,28 @@
-const ORDER_URL = "/api/orders";
+import { api } from "../src/api/axios";
+
+const ORDER_URL = "/orders";
 
 export const getAllOrders = async () => {
-  try {
-    const res = await fetch(ORDER_URL);
-    if (!res.ok) throw new Error("Failed to fetch orders");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(ORDER_URL);
+  return data;
 };
 
 export const getOrderById = async (id) => {
-  try {
-    const res = await fetch(`${ORDER_URL}/${id}`);
-    if (!res.ok) throw new Error("Order not found");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(`${ORDER_URL}/${id}`);
+  return data;
 };
 
-// data: { customerId, carId, date, price, status, finalPrice }
-export const createOrder = async (data) => {
-  try {
-    const res = await fetch(ORDER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to create order");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const createOrder = async (body) => {
+  const { data } = await api.post(ORDER_URL, body);
+  return data;
 };
 
-// data: { price, status, finalPrice }  ← only these 3 are updatable per your route
-export const updateOrder = async (id, data) => {
-  try {
-    const res = await fetch(`${ORDER_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to update order");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const updateOrder = async (id, body) => {
+  const { data } = await api.put(`${ORDER_URL}/${id}`, body);
+  return data;
 };
 
 export const deleteOrder = async (id) => {
-  try {
-    const res = await fetch(`${ORDER_URL}/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("Failed to delete order");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.delete(`${ORDER_URL}/${id}`);
+  return data;
 };

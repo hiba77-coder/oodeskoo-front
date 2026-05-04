@@ -1,51 +1,28 @@
-const SHOWROOM_URL = "/api/showrooms";
+import { api } from "../src/api/axios";
+
+const SHOWROOM_URL = "/showrooms";
 
 export const getAllShowrooms = async () => {
-  try {
-    const res = await fetch(SHOWROOM_URL);
-    if (!res.ok) throw new Error("Failed to fetch showrooms");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(SHOWROOM_URL);
+  return data;
 };
 
 export const getShowroomById = async (id) => {
-  try {
-    const res = await fetch(`${SHOWROOM_URL}/${id}`);
-    if (!res.ok) throw new Error("Showroom not found");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.get(`${SHOWROOM_URL}/${id}`);
+  return data;
 };
 
-// data: { name, address, phone, managerName, managerPhone, managerEmail }
-export const createShowroom = async (data) => {
-  try {
-    const res = await fetch(SHOWROOM_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to create showroom");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const createShowroom = async (body) => {
+  const { data } = await api.post(SHOWROOM_URL, body);
+  return data;
 };
 
-// data: { name, address, phone, managerName, managerPhone, managerEmail }
-export const updateShowroom = async (id, data) => {
-  try {
-    const res = await fetch(`${SHOWROOM_URL}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) throw new Error("Failed to update showroom");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+export const updateShowroom = async (id, body) => {
+  const { data } = await api.put(`${SHOWROOM_URL}/${id}`, body);
+  return data;
 };
 
 export const deleteShowroom = async (id) => {
-  try {
-    const res = await fetch(`${SHOWROOM_URL}/${id}`, { method: "DELETE" });
-    if (!res.ok) throw new Error("Failed to delete showroom");
-    return await res.json();
-  } catch (error) { console.error(error); throw error; }
+  const { data } = await api.delete(`${SHOWROOM_URL}/${id}`);
+  return data;
 };
